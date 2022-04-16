@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:reel_app/utils/colors.dart';
 import 'package:reel_app/utils/theme.dart';
+import 'package:reel_app/view/constants.dart';
 import 'package:reel_app/view/screens/auth/login.dart';
 import 'package:reel_app/view/widgets/text_input_field.dart';
 import 'package:sizer/sizer.dart';
@@ -21,24 +22,64 @@ class Signup extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 1.h,
+                height: 10.h,
               ),
               SizedBox(
-                height: 30.h,
-                width: 30.h,
-                child:
-                    const Image(image: AssetImage('assets/images/hang_up.png')),
+                height: 25.h,
+                width: 25.h,
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          // color: Colors.black,
+                          shape: BoxShape.circle,
+                          // color: Colors.black,
+                          border: Border.all(color: Colors.grey, width: 2),
+                          image: DecorationImage(
+                              image: AssetImage(
+                                'assets/images/hang_up.png',
+                              ),
+                              fit: BoxFit.cover),
+                        ),
+                        height: 25.h,
+                        width: 25.h,
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        height: 50,
+                        width: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            border: Border.all(color: Colors.grey, width: 2),
+                            shape: BoxShape.circle),
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.white,
+                          // size: 10,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 1.h,
               ),
               const Text(
-                'Register to Hang',
+                'Register and Hang',
                 style: authText,
               ),
               SizedBox(
                 height: 5.h,
               ),
+              // SizedBox(
+              //   height: 2.h,
+              // ),
               Container(
                 width: 100.w,
                 padding: EdgeInsets.symmetric(horizontal: 5.w),
@@ -79,10 +120,13 @@ class Signup extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 5.h,
+                height: 10.h,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  authController.registerUser(_usernameController.text,
+                      _emailController.text, _passwordController.text);
+                },
                 child: Container(
                   height: 8.h,
                   width: 100.w,
@@ -103,17 +147,20 @@ class Signup extends StatelessWidget {
                 height: 2.h,
               ),
               RichText(
-                  text: TextSpan(children: [
-                TextSpan(
-                    text: 'Have an account?',
-                    style: bodySmall.copyWith(color: Colors.grey)),
-                TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Login())),
-                    text: '\t\tHang',
-                    style: bodySmall.copyWith(fontWeight: FontWeight.w700))
-              ]))
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                        text: 'Have an account?',
+                        style: bodySmall.copyWith(color: Colors.grey)),
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Login())),
+                        text: '\t\tHang',
+                        style: bodySmall.copyWith(fontWeight: FontWeight.w700)),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

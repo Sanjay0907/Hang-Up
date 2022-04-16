@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "817085634298",
+    "project_id": "hang-up-269ab",
+    "storage_bucket": "hang-up-269ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817085634298:android:353549a77df436fce49b43",
+        "android_client_info": {
+          "package_name": "com.example.reel_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817085634298-orpnt95ggl8f6pbos41f92uv5ie2qh57.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-APguk0kYtN47qU_jSAP2-b5WmBsVoFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817085634298-orpnt95ggl8f6pbos41f92uv5ie2qh57.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "817085634298-s0a3mf0shbabd6up6u7tdqortioa9plk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.reelApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

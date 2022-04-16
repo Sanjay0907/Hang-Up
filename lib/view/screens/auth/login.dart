@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:reel_app/utils/colors.dart';
 import 'package:reel_app/utils/theme.dart';
+import 'package:reel_app/view/constants.dart';
 import 'package:reel_app/view/screens/auth/signup.dart';
 import 'package:reel_app/view/widgets/text_input_field.dart';
 import 'package:sizer/sizer.dart';
@@ -74,7 +75,12 @@ class Login extends StatelessWidget {
                 height: 5.h,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  authController.loginUser(
+                    _emailController.text,
+                    _passwordController.text,
+                  );
+                },
                 child: Container(
                   height: 8.h,
                   width: 100.w,

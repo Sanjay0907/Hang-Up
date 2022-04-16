@@ -11,6 +11,14 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   sizer: ^2.0.15
+  get: ^4.6.1
+  firebase_core: ^1.14.1
+  firebase_auth: ^3.3.14
+  firebase_storage: ^10.2.12
+  cloud_firestore: ^3.1.12
+  image_picker: ^0.8.5
+  video_player: ^2.3.0
+  video_compress: ^3.1.0
 
 dev_dependencies:
   flutter_test:
