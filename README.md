@@ -1,4 +1,4 @@
-# reel_app
+# Short Video App
 
 A new Flutter project.
 
