@@ -37,7 +37,7 @@ class Signup extends StatelessWidget {
                           shape: BoxShape.circle,
                           // color: Colors.black,
                           border: Border.all(color: Colors.grey, width: 2),
-                          image: DecorationImage(
+                          image: const DecorationImage(
                               image: AssetImage(
                                 'assets/images/hang_up.png',
                               ),
@@ -45,22 +45,26 @@ class Signup extends StatelessWidget {
                         ),
                         height: 25.h,
                         width: 25.h,
+                        child: null,
                       ),
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
-                      child: Container(
-                        height: 50,
-                        width: 50,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Colors.black,
-                            border: Border.all(color: Colors.grey, width: 2),
-                            shape: BoxShape.circle),
-                        child: Icon(
-                          Icons.camera_alt,
-                          color: Colors.white,
-                          // size: 10,
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              border: Border.all(color: Colors.grey, width: 2),
+                              shape: BoxShape.circle),
+                          child: const Icon(
+                            Icons.camera_alt,
+                            color: Colors.white,
+                            // size: 10,
+                          ),
                         ),
                       ),
                     ),
