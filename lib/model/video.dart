@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Video {
+  // Video upload details
   String username;
   String uid;
   String id;
@@ -12,6 +13,16 @@ class Video {
   String videoUrl;
   String thumbnail;
   String profilePhoto;
+
+  // Video Upload Date
+  String year;
+  String month;
+  String day;
+  String hour;
+  String second;
+  String minute;
+  String weekday;
+  String uploadDate;
 
   Video({
     required this.username,
@@ -25,6 +36,14 @@ class Video {
     required this.videoUrl,
     required this.thumbnail,
     required this.profilePhoto,
+    required this.year,
+    required this.month,
+    required this.day,
+    required this.hour,
+    required this.minute,
+    required this.second,
+    required this.weekday,
+    required this.uploadDate,
   });
 
   Map<String, dynamic> toJson() => {
@@ -39,11 +58,20 @@ class Video {
         "videoURL": videoUrl,
         "thumbnail": thumbnail,
         "profilePhoto": profilePhoto,
+        "Year": year,
+        "Month": month,
+        "Day": day,
+        "Hour": hour,
+        "Minute": minute,
+        "Seconds": second,
+        "WeekDay": weekday,
+        "UploadDate": uploadDate
       };
 
   static Video fromSnap(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
     return Video(
+      uploadDate: snapshot['uploadDate'],
       username: snapshot['username'],
       uid: snapshot['uid'],
       id: snapshot['id'],
@@ -55,6 +83,13 @@ class Video {
       videoUrl: snapshot['videoUrl'],
       thumbnail: snapshot['thumbnail'],
       profilePhoto: snapshot['profilePhoto'],
+      year: snapshot['year'],
+      month: snapshot['month'],
+      day: snapshot['day'],
+      hour: snapshot['hour'],
+      minute: snapshot['minute'],
+      second: snapshot['second'],
+      weekday: snapshot['weekday'],
     );
   }
 }

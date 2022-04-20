@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reel_app/controller/upload_video/upload_video_controller.dart';
+import 'package:reel_app/model/upload_date.dart';
+import 'package:reel_app/view/constants.dart';
 import 'package:reel_app/view/widgets/text_input_field.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
@@ -105,10 +108,34 @@ class _ConfirmAndPostState extends State<ConfirmAndPost> {
                     ),
                     ElevatedButton(
                         onPressed: () {
+                          VideoUploadDate videoUploadDate = VideoUploadDate();
+                          videoUploadDate.uploadDate(
+                            DateTime.now().year.toString(),
+                            DateTime.now().month.toString(),
+                            DateTime.now().day.toString(),
+                            DateTime.now().hour.toString(),
+                            DateTime.now().second.toString(),
+                            DateTime.now().minute.toString(),
+                            DateTime.now().weekday.toString(),
+                          );
+
                           uploadVideoController.uploadVideo(
-                              _songController.text,
-                              _captionController.text,
-                              widget.videoPath);
+                            _songController.text,
+                            _captionController.text,
+                            widget.videoPath,
+                            videoUploadDate.upload_date.toString(),
+                            DateTime.now().year.toString(),
+                            DateTime.now().month.toString(),
+                            DateTime.now().day.toString(),
+                            DateTime.now().hour.toString(),
+                            DateTime.now().second.toString(),
+                            DateTime.now().minute.toString(),
+                            videoUploadDate.week_day.toString(),
+                          );
+                          print('Complete Date : ' +
+                              videoUploadDate.upload_date.toString());
+                          print('weekDay : ' +
+                              videoUploadDate.week_day.toString());
                         },
                         child: const Text(
                           'Share!',

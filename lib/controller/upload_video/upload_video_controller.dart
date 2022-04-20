@@ -12,7 +12,7 @@ class UploadVideo extends GetxController {
     final compressedVideo = await VideoCompress.compressVideo(
       videoPath,
       quality: VideoQuality.MediumQuality,
-      duration: 30,
+      // duration: 30,
     );
     return compressedVideo!.file;
   }
@@ -40,7 +40,19 @@ class UploadVideo extends GetxController {
     return downloadUrl;
   }
 
-  uploadVideo(String songName, String caption, String videoPath) async {
+  uploadVideo(
+    String songName,
+    String caption,
+    String videoPath,
+    String uploadDate,
+    String year,
+    String month,
+    String day,
+    String hour,
+    String second,
+    String minute,
+    String weekday,
+  ) async {
     try {
       String uid = firebaseAuth.currentUser!.uid;
       DocumentSnapshot userDoc =
@@ -54,7 +66,7 @@ class UploadVideo extends GetxController {
       Video video = Video(
         username: (userDoc.data()! as Map<String, dynamic>)['name'],
         uid: uid,
-        id: "Video $len",
+        id: "$uid Video $len",
         likes: [],
         commentCount: 0,
         shareCount: 0,
@@ -63,6 +75,14 @@ class UploadVideo extends GetxController {
         videoUrl: videoUrl,
         thumbnail: thumbnail,
         profilePhoto: (userDoc.data()! as Map<String, dynamic>)['profilePhoto'],
+        uploadDate: uploadDate,
+        day: day,
+        hour: hour,
+        minute: minute,
+        month: month,
+        second: second,
+        weekday: weekday,
+        year: year,
       );
 
       await fireStore
@@ -74,6 +94,7 @@ class UploadVideo extends GetxController {
       Get.back();
     } catch (e) {
       Get.snackbar('Error', e.toString());
+      print('Error : ' + e.toString());
     }
   }
 }

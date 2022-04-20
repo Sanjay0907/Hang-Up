@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:reel_app/model/user.dart' as model;
@@ -8,6 +9,9 @@ import 'package:reel_app/view/screens/auth/login.dart';
 import 'package:reel_app/view/screens/home_screen/home_screen.dart';
 
 class AuthController extends GetxController {
+  late Rx<File?> _pickedImage;
+
+  File? get profilePhoto => _pickedImage.value;
   late Rx<User?> _user;
 
   @override
@@ -42,23 +46,27 @@ class AuthController extends GetxController {
 
 // Register for new User
   void registerUser(
-    String username,
-    String email,
-    String password,
-  ) async {
+      String username, String email, String password, File? image) async {
     try {
-      if (username.isNotEmpty && email.isNotEmpty && password.isNotEmpty) {
+      if (username.isNotEmpty &&
+          email.isNotEmpty &&
+          password.isNotEmpty &&
+          image != null) {
         // Save user data for Authentication and Firebase Firestore
         UserCredential userCredential =
             await firebaseAuth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
+        String downloadUrl = await _uploadUserProfileImage(image);
+        print('Download URL : ' + downloadUrl);
         model.User user = model.User(
           name: username,
           email: email,
           uid: userCredential.user!.uid,
+          profilePhoto: downloadUrl,
         );
+
         await fireStore
             .collection('users')
             .doc(userCredential.user!.uid)
@@ -68,19 +76,20 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       Get.snackbar('Error', e.toString());
+      print(e.toString());
     }
   }
 
-  void userProfilePic(File? profileImage) async {
-    try {
-      if (profileImage != null) {
-// Upload UserProfileImage to Firestore Database
-        String downloadUrl = await _uploadUserProfileImage(profileImage);
-      }
-    } catch (e) {
-      Get.snackbar('Error', e.toString());
-    }
-  }
+//   void userProfilePic(File? profileImage) async {
+//     try {
+//       if (profileImage != null) {
+// // Upload UserProfileImage to Firestore Database
+//         String downloadUrl = await _uploadUserProfileImage(profileImage);
+//       }
+//     } catch (e) {
+//       Get.snackbar('Error', e.toString());
+//     }
+//   }
 
   void loginUser(String email, String password) async {
     try {
@@ -97,5 +106,17 @@ class AuthController extends GetxController {
     } catch (e) {
       Get.snackbar('Error Logging in', e.toString());
     }
+  }
+
+  void pickImage() async {
+    final pickImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickImage != null) {
+      Get.snackbar(
+        'Profile Picture',
+        'Profile Pic selected sucessfully',
+      );
+    }
+    _pickedImage = Rx<File?>(File(pickImage!.path));
   }
 }

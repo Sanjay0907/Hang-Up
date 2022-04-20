@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:reel_app/controller/auth/auth_controller.dart';
 import 'package:reel_app/utils/colors.dart';
 import 'package:reel_app/utils/theme.dart';
 import 'package:reel_app/view/constants.dart';
@@ -12,6 +15,8 @@ class Signup extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+//  AuthController authController = AuthController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,13 +50,12 @@ class Signup extends StatelessWidget {
                         ),
                         height: 25.h,
                         width: 25.h,
-                        child: null,
                       ),
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () => authController.pickImage(),
                         child: Container(
                           height: 50,
                           width: 50,
@@ -81,9 +85,6 @@ class Signup extends StatelessWidget {
               SizedBox(
                 height: 5.h,
               ),
-              // SizedBox(
-              //   height: 2.h,
-              // ),
               Container(
                 width: 100.w,
                 padding: EdgeInsets.symmetric(horizontal: 5.w),
@@ -128,8 +129,11 @@ class Signup extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  authController.registerUser(_usernameController.text,
-                      _emailController.text, _passwordController.text);
+                  authController.registerUser(
+                      _usernameController.text,
+                      _emailController.text,
+                      _passwordController.text,
+                      authController.profilePhoto);
                 },
                 child: Container(
                   height: 8.h,
