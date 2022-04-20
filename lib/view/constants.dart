@@ -6,13 +6,13 @@ import 'package:reel_app/controller/auth/auth_controller.dart';
 import 'package:reel_app/model/upload_date.dart';
 import 'package:reel_app/view/screens/add_video/add_post.dart';
 import 'package:reel_app/view/screens/date_time.dart';
+import 'package:reel_app/view/screens/video_screen.dart';
 
 // PAGES
-var pages = [
-  Text('Home Screen'),
-  // Text('Search Screen'),
-  DisplayDateAndTime(),
-  AddVideo(),
+List pages = [
+  VideoScreen(),
+  Text('Search Screen'),
+  const AddVideo(),
   Text('Messages Screen'),
   Text('Profile Screen'),
 ];

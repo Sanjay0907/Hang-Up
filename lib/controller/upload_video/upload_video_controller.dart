@@ -1,11 +1,17 @@
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:reel_app/model/video.dart';
+
 import 'package:reel_app/view/constants.dart';
+import 'package:reel_app/view/screens/home_screen/home_screen.dart';
 import 'package:video_compress/video_compress.dart';
 
-class UploadVideo extends GetxController {
+class UploadVideo extends GetxController with Bindings {
+  // Video Uploaded Status
+  late Future<bool> _videoUploadStatus;
+  Future<bool> get videoUploadStatus => _videoUploadStatus;
   //  Upload Video
 
   _compressVideo(String videoPath) async {
@@ -90,11 +96,18 @@ class UploadVideo extends GetxController {
           .doc('Video $len')
           .set(video.toJson());
 
-      Get.snackbar("Upload Status", 'Video Upload Success');
-      Get.back();
+      Get.offAll(const HomeScreen());
+      Get.snackbar('Video Upload Status', 'Successful');
+
+      // Get.back();
     } catch (e) {
       Get.snackbar('Error', e.toString());
       print('Error : ' + e.toString());
     }
+  }
+
+  @override
+  void dependencies() {
+    // TODO: implement dependencies
   }
 }

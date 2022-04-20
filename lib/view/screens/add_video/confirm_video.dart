@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:reel_app/controller/upload_video/upload_video_controller.dart';
 import 'package:reel_app/model/upload_date.dart';
 import 'package:reel_app/view/constants.dart';
+import 'package:reel_app/view/screens/home_screen/home_screen.dart';
 import 'package:reel_app/view/widgets/text_input_field.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
@@ -132,10 +133,6 @@ class _ConfirmAndPostState extends State<ConfirmAndPost> {
                             DateTime.now().minute.toString(),
                             videoUploadDate.week_day.toString(),
                           );
-                          print('Complete Date : ' +
-                              videoUploadDate.upload_date.toString());
-                          print('weekDay : ' +
-                              videoUploadDate.week_day.toString());
                         },
                         child: const Text(
                           'Share!',
