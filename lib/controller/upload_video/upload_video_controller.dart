@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:reel_app/model/video.dart';
-
 import 'package:reel_app/view/constants.dart';
 import 'package:reel_app/view/screens/home_screen/home_screen.dart';
 import 'package:video_compress/video_compress.dart';
@@ -72,7 +71,7 @@ class UploadVideo extends GetxController with Bindings {
       Video video = Video(
         username: (userDoc.data()! as Map<String, dynamic>)['name'],
         uid: uid,
-        id: "$uid Video $len",
+        id: "Video $len",
         likes: [],
         commentCount: 0,
         shareCount: 0,
@@ -102,12 +101,9 @@ class UploadVideo extends GetxController with Bindings {
       // Get.back();
     } catch (e) {
       Get.snackbar('Error', e.toString());
-      print('Error : ' + e.toString());
     }
   }
 
   @override
-  void dependencies() {
-    // TODO: implement dependencies
-  }
+  void dependencies() {}
 }

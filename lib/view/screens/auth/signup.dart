@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:reel_app/controller/auth/auth_controller.dart';
 import 'package:reel_app/utils/colors.dart';
 import 'package:reel_app/utils/theme.dart';
 import 'package:reel_app/view/constants.dart';

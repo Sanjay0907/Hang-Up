@@ -13,6 +13,7 @@ class AuthController extends GetxController {
 
   File? get profilePhoto => _pickedImage.value;
   late Rx<User?> _user;
+  User get user => _user.value!;
 
   @override
   void onReady() {
@@ -59,7 +60,6 @@ class AuthController extends GetxController {
           password: password,
         );
         String downloadUrl = await _uploadUserProfileImage(image);
-        print('Download URL : ' + downloadUrl);
         model.User user = model.User(
           name: username,
           email: email,
@@ -76,7 +76,7 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       Get.snackbar('Error', e.toString());
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
@@ -104,7 +104,7 @@ class AuthController extends GetxController {
         Get.snackbar('Error Logging in', 'Please Enter all the Fields');
       }
     } catch (e) {
-      Get.snackbar('Error Logging in', e.toString());
+      Get.snackbar('Oops!', 'Invalid Credentials');
     }
   }
 

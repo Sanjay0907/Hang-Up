@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:reel_app/view/constants.dart';
+import 'package:reel_app/view/screens/video_screen.dart';
+import 'package:reel_app/view/widgets/heart_animation_widget.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../controller/video_controller.dart';
+
 class VideoPlayerHomeScreen extends StatefulWidget {
   final String videoUrl;
-  const VideoPlayerHomeScreen({Key? key, required this.videoUrl})
+  final String videoid;
+  const VideoPlayerHomeScreen(
+      {Key? key, required this.videoUrl, required this.videoid})
       : super(key: key);
 
   @override
@@ -12,7 +20,9 @@ class VideoPlayerHomeScreen extends StatefulWidget {
 }
 
 class _VideoPlayerHomeScreenState extends State<VideoPlayerHomeScreen> {
+  final VideoController videoController = Get.put(VideoController());
   late VideoPlayerController videoPlayerController;
+
   @override
   void initState() {
     super.initState();
@@ -20,6 +30,9 @@ class _VideoPlayerHomeScreenState extends State<VideoPlayerHomeScreen> {
       ..initialize().then((value) {
         videoPlayerController.play();
         videoPlayerController.setVolume(1);
+        videoPlayerController.setPlaybackSpeed(1);
+        videoPlayerController.setLooping(true);
+        // videoPlayerController.
       });
   }
 
@@ -31,11 +44,30 @@ class _VideoPlayerHomeScreenState extends State<VideoPlayerHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100.w,
-      height: 100.h,
-      decoration: const BoxDecoration(color: Colors.black),
-      child: VideoPlayer(videoPlayerController),
+    return InkWell(
+      onDoubleTap: () {
+        videoController.tapToLikeVideo(widget.videoid);
+        setState(() {
+          isHeartAnimating = true;
+          isLiked = true;
+        });
+      },
+      onTap: () {
+// isPlaying
+
+        isPlaying
+            ? videoPlayerController.pause()
+            : videoPlayerController.play();
+        setState(() {
+          isPlaying = !isPlaying;
+        });
+      },
+      child: Container(
+        width: 100.w,
+        height: 100.h,
+        decoration: const BoxDecoration(color: Colors.black),
+        child: VideoPlayer(videoPlayerController),
+      ),
     );
   }
 }

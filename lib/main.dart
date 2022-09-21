@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:reel_app/controller/auth/auth_controller.dart';
 import 'package:reel_app/utils/colors.dart';
 import 'package:reel_app/view/screens/auth/login.dart';
-import 'package:reel_app/view/screens/date_time.dart';
 import 'package:sizer/sizer.dart';
 
 void main() async {

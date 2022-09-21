@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reel_app/utils/colors.dart';
-import 'package:reel_app/view/screens/add_video/confirm_video.dart';
+// import 'package:reel_app/view/screens/add_video/confirm_video.dart';
+
+import 'confirm_video.dart';
 
 class AddVideo extends StatelessWidget {
   const AddVideo({Key? key}) : super(key: key);
